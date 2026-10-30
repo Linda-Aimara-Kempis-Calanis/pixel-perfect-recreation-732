@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import {
-  Dna, Menu, X, Award, FileText, GitBranch, BarChart3, Sigma, ArrowRight, Heart,
+  Dna, Menu, X, Award, FileText, GitBranch, LineChart, Mail, Sigma, ArrowRight, Heart,
   Check, MessageSquare, Zap, ClipboardList, Code2, FlaskConical, Users, Send, Microscope,
 } from "lucide-react";
 
@@ -19,6 +19,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const EMAIL = "linda.kempiscal@uaem.edu.mx";
+
 const nav = [
   { href: "#inicio", label: "Inicio" },
   { href: "#cursos", label: "Cursos" },
@@ -29,7 +31,7 @@ const nav = [
 const cursos = [
   { icon: FileText, t: "Reportes Dinámicos con R Markdown", d: "Aprende a automatizar tus reportes científicos y documentos reproducibles de forma profesional." },
   { icon: GitBranch, t: "Control de Versiones con Git y GitHub", d: "Aprende a trabajar en equipo, respaldar tu código y gestionar proyectos científicos eficientemente." },
-  { icon: BarChart3, t: "Visualización de Datos con ggplot2", d: "Domina la creación de gráficos científicos de alta calidad, listos para publicación." },
+  { icon: LineChart, t: "Visualización de Datos con ggplot2", d: "Domina la creación de gráficos científicos de alta calidad, listos para publicación." },
   { icon: Sigma, t: "Análisis Estadísticos en R", d: "Aplica pruebas estadísticas robustas e interpretación de datos biológicos paso a paso." },
 ];
 
@@ -46,7 +48,14 @@ const btnGhost = "inline-flex items-center justify-center gap-2 rounded-full bor
 function Index() {
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
-  const submit = (e: FormEvent) => { e.preventDefault(); setSent(true); };
+  const submit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const f = new FormData(e.currentTarget);
+    const subject = `Contacto BioInnova Lab: ${f.get("tipo")}`;
+    const body = `Nombre: ${f.get("Nombre")}\nCorreo: ${f.get("Correo")}\nInstitución: ${f.get("Institución")}\nTipo de proyecto: ${f.get("tipo")}\n\n${f.get("mensaje")}`;
+    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setSent(true);
+  };
 
   return (
     <div className="min-h-screen">
@@ -174,23 +183,24 @@ function Index() {
             <div className="py-16 text-center">
               <Check className="mx-auto h-12 w-12 text-accent" />
               <h3 className="mt-4 text-2xl font-bold">¡Gracias por escribirnos!</h3>
-              <p className="mt-2 text-muted-foreground">Te contactaremos pronto.</p>
+              <p className="mt-2 text-muted-foreground">Se abrió tu correo para enviar el mensaje. También puedes escribir directamente a <a className="font-semibold text-accent" href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
             </div>
           ) : (
             <form onSubmit={submit} className="space-y-4">
               <h3 className="text-2xl font-bold">Contáctanos</h3>
+              <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 text-sm font-medium text-accent"><Mail className="h-4 w-4" />{EMAIL}</a>
               {[["Nombre", "text"], ["Correo", "email"], ["Institución", "text"]].map(([l, t]) => (
                 <label key={l} className="block text-sm font-medium">{l}
-                  <input required type={t} className="mt-1 w-full rounded-xl border bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-accent" />
+                  <input required name={l} type={t} className="mt-1 w-full rounded-xl border bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-accent" />
                 </label>
               ))}
               <label className="block text-sm font-medium">Tipo de proyecto
-                <select className="mt-1 w-full rounded-xl border bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-accent">
+                <select name="tipo" className="mt-1 w-full rounded-xl border bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-accent">
                   <option>Curso</option><option>Análisis RNA-seq</option><option>Colaboración científica</option><option>Otro</option>
                 </select>
               </label>
               <label className="block text-sm font-medium">Mensaje
-                <textarea required rows={4} className="mt-1 w-full rounded-xl border bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-accent" />
+                <textarea name="mensaje" required rows={4} className="mt-1 w-full rounded-xl border bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-accent" />
               </label>
               <button type="submit" className={`${btnCta} w-full`}>Enviar mensaje <Send className="h-4 w-4" /></button>
             </form>
