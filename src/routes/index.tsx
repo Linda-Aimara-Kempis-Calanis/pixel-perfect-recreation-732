@@ -147,12 +147,16 @@ function Index() {
         </div>
       </section>
 
-      <section id="cursos" className="mx-auto max-w-6xl px-5 py-24">
+      <section id="cursos" className="relative mx-auto max-w-6xl overflow-hidden px-5 py-24">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute -top-16 right-[-6rem] h-96 w-96 rounded-full bg-teal/20 blur-3xl" />
+          <div className="absolute bottom-[-6rem] left-[-6rem] h-80 w-80 rounded-full bg-cta/15 blur-3xl" />
+        </div>
         <p className="text-sm font-semibold uppercase tracking-wider text-accent">Cursos con aval UAEM</p>
         <h2 className="mt-2 text-3xl font-bold md:text-4xl">Aprende bioinformática práctica</h2>
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
           {cursos.map(({ icon: I, t, d }) => (
-            <article key={t} className="flex flex-col rounded-2xl border bg-card p-7 shadow-soft transition hover:-translate-y-1">
+            <article key={t} className="glass flex flex-col rounded-2xl p-7 transition hover:-translate-y-1">
               <span className="grid h-12 w-12 place-items-center rounded-xl bg-secondary text-secondary-foreground"><I className="h-6 w-6" /></span>
               <h3 className="mt-5 text-xl font-semibold">{t}</h3>
               <p className="mt-2 flex-1 text-muted-foreground">{d}</p>
@@ -166,10 +170,14 @@ function Index() {
       </section>
 
       <section id="analisis" className="bg-muted py-24">
-        <div className="mx-auto max-w-5xl px-5">
+        <div className="relative mx-auto max-w-5xl overflow-hidden px-5">
+          <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute -top-10 right-[-8rem] h-96 w-96 rounded-full bg-teal/20 blur-3xl" />
+            <div className="absolute bottom-[-8rem] left-[-8rem] h-80 w-80 rounded-full bg-cta/15 blur-3xl" />
+          </div>
           <p className="text-center text-sm font-semibold uppercase tracking-wider text-accent">Análisis de datos</p>
           <h2 className="mt-2 text-center text-3xl font-bold md:text-4xl">Paquetes de análisis profesional</h2>
-          <div className="mt-12 overflow-hidden rounded-3xl bg-card shadow-soft">
+          <div className="glass mt-12 overflow-hidden rounded-3xl">
             <div className="bg-hero p-8 text-navy-foreground md:p-10">
               <p className="text-sm font-semibold uppercase tracking-widest text-teal">Paquete de análisis de datos</p>
               <h3 className="mt-2 text-3xl font-extrabold md:text-4xl">RNAseq <span className="font-medium opacity-80">(Expresión Diferencial)</span></h3>
@@ -193,7 +201,7 @@ function Index() {
             </div>
             <div className="grid grid-cols-2 gap-px border-t bg-border md:grid-cols-4">
               {beneficios.map(({ icon: I, t }) => (
-                <div key={t} className="flex flex-col items-center gap-2 bg-card p-5 text-center text-sm font-medium">
+                <div key={t} className="flex flex-col items-center gap-2 p-5 text-center text-sm font-medium">
                   <I className="h-6 w-6 text-accent" />{t}
                 </div>
               ))}

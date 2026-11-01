@@ -121,6 +121,9 @@
   --cta: oklch(0.7 0.18 50);
   --cta-foreground: oklch(0.99 0 0);
   --gradient-hero: radial-gradient(ellipse at 80% 0%, oklch(0.38 0.1 200 / 0.5), transparent 60%), linear-gradient(160deg, oklch(0.12 0.03 260), oklch(0.2 0.055 245));
+  --glass-bg: oklch(0.3 0.05 255 / 0.5);
+  --glass-border: oklch(1 0 0 / 0.14);
+  --glass-shadow: 0 10px 30px -12px oklch(0 0 0 / 0.4);
   --background: oklch(0.16 0.035 255);
   --foreground: oklch(0.93 0.02 240);
   --card: oklch(0.21 0.04 255);
@@ -173,3 +176,9 @@
 
 @utility bg-hero { background: var(--gradient-hero); }
 @utility shadow-soft { box-shadow: var(--shadow-soft); }
+@utility glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px) saturate(140%);
+  box-shadow: var(--glass-shadow);
+}
