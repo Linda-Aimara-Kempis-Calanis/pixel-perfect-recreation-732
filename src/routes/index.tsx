@@ -120,14 +120,17 @@ function Index() {
       </header>
 
       <section id="inicio" className="bg-hero text-navy-foreground">
-        <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-[1.3fr_1fr] md:py-28">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 py-24 md:grid-cols-[1.3fr_1fr] md:py-32">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-teal">
               <Microscope className="h-4 w-4" /> Omics Analysis · México
             </span>
-            <h1 className="mt-6 text-4xl font-extrabold leading-tight md:text-6xl">
+            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight md:text-6xl">
               Bioinformática avanzada en <span className="text-teal">R</span> y análisis ómico
             </h1>
+            <p className="mt-5 max-w-xl text-lg text-navy-foreground/80 md:text-xl">
+              Cursos con valor curricular y servicios de análisis profesional para tu investigación.
+            </p>
             <ul className="mt-6 space-y-3 text-lg opacity-90">
               <li className="flex gap-3"><Award className="mt-1 h-5 w-5 shrink-0 text-teal" /><span>Cursos especializados con constancia oficial con valor curricular por la <strong>Universidad Autónoma del Estado de Morelos (UAEM)</strong>.</span></li>
               <li className="flex gap-3"><FlaskConical className="mt-1 h-5 w-5 shrink-0 text-teal" />Servicios de análisis bioinformático profesional.</li>
@@ -147,14 +150,15 @@ function Index() {
         </div>
       </section>
 
-      <section id="cursos" className="relative mx-auto max-w-6xl overflow-hidden px-5 py-24">
+      <section id="cursos" className="relative mx-auto max-w-6xl overflow-hidden px-5 py-28 md:py-36">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute -top-16 right-[-6rem] h-96 w-96 rounded-full bg-teal/20 blur-3xl" />
           <div className="absolute bottom-[-6rem] left-[-6rem] h-80 w-80 rounded-full bg-cta/15 blur-3xl" />
         </div>
-        <p className="text-sm font-semibold uppercase tracking-wider text-accent">Cursos con aval UAEM</p>
-        <h2 className="mt-2 text-3xl font-bold md:text-4xl">Aprende bioinformática práctica</h2>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+        <p className="text-sm font-semibold uppercase tracking-wider text-link">Cursos con aval UAEM</p>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">Aprende bioinformática práctica</h2>
+        <p className="mt-3 max-w-2xl text-lg text-muted-foreground">Programas intensivos y prácticos para investigadores, clínicos y estudiantes.</p>
+        <div className="mt-14 grid gap-8 sm:grid-cols-2">
           {cursos.map(({ icon: I, t, d }) => (
             <article key={t} className="glass flex flex-col rounded-2xl p-7 transition hover:-translate-y-1">
               <span className="grid h-12 w-12 place-items-center rounded-xl bg-secondary text-secondary-foreground"><I className="h-6 w-6" /></span>
@@ -163,21 +167,22 @@ function Index() {
               <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-cta/10 px-3 py-1 text-xs font-semibold text-cta">
                 <Award className="h-4 w-4" /> Constancia con valor curricular por la UAEM
               </span>
-              <a href="#contacto" className="mt-5 inline-flex items-center gap-2 font-semibold text-primary hover:text-accent">Más información / Registro <ArrowRight className="h-4 w-4" /></a>
+              <a href="#contacto" className="mt-5 inline-flex items-center gap-2 font-semibold text-link hover:opacity-80">Más información / Registro <ArrowRight className="h-4 w-4" /></a>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="analisis" className="bg-muted py-24">
+      <section id="analisis" className="bg-muted py-28 md:py-36">
         <div className="relative mx-auto max-w-5xl overflow-hidden px-5">
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute -top-10 right-[-8rem] h-96 w-96 rounded-full bg-teal/20 blur-3xl" />
             <div className="absolute bottom-[-8rem] left-[-8rem] h-80 w-80 rounded-full bg-cta/15 blur-3xl" />
           </div>
-          <p className="text-center text-sm font-semibold uppercase tracking-wider text-accent">Análisis de datos</p>
-          <h2 className="mt-2 text-center text-3xl font-bold md:text-4xl">Paquetes de análisis profesional</h2>
-          <div className="glass mt-12 overflow-hidden rounded-3xl">
+          <p className="text-center text-sm font-semibold uppercase tracking-wider text-link">Análisis de datos</p>
+          <h2 className="mt-2 text-center text-3xl font-bold tracking-tight md:text-4xl">Paquetes de análisis profesional</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-lg text-muted-foreground">Entregables claros, código reproducible en R y consultoría incluida.</p>
+          <div className="glass mt-14 overflow-hidden rounded-3xl">
             <div className="bg-hero p-8 text-navy-foreground md:p-10">
               <p className="text-sm font-semibold uppercase tracking-widest text-teal">Paquete de análisis de datos</p>
               <h3 className="mt-2 text-3xl font-extrabold md:text-4xl">RNAseq <span className="font-medium opacity-80">(Expresión Diferencial)</span></h3>
@@ -202,42 +207,42 @@ function Index() {
             <div className="grid grid-cols-2 gap-px border-t bg-border md:grid-cols-4">
               {beneficios.map(({ icon: I, t }) => (
                 <div key={t} className="flex flex-col items-center gap-2 p-5 text-center text-sm font-medium">
-                  <I className="h-6 w-6 text-accent" />{t}
+                  <I className="h-6 w-6 text-link" />{t}
                 </div>
               ))}
             </div>
           </div>
-          <div className="mt-10 flex items-center justify-center gap-3 text-muted-foreground">
-            <Dna className="h-6 w-6 text-accent" />
+            <div className="mt-14 flex items-center justify-center gap-3 text-muted-foreground">
+            <Dna className="h-6 w-6 text-link" />
             <span className="font-display font-semibold">Laboratorio de Inmunología Celular y de Sistemas</span>
           </div>
         </div>
       </section>
 
-      <section id="colaboraciones" className="mx-auto grid max-w-6xl gap-12 px-5 py-24 md:grid-cols-2">
+      <section id="colaboraciones" className="mx-auto grid max-w-6xl gap-16 px-5 py-28 md:grid-cols-2 md:py-36">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wider text-accent">Colaboraciones</p>
-          <h2 className="mt-2 text-3xl font-bold md:text-4xl">Hagamos ciencia juntos</h2>
+          <p className="text-sm font-semibold uppercase tracking-wider text-link">Colaboraciones</p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">Hagamos ciencia juntos</h2>
           <p className="mt-4 text-lg text-muted-foreground">
             Invitamos a investigadores, clínicos y estudiantes a desarrollar colaboraciones científicas y coinvestigaciones en análisis ómico, inmunología y biología de sistemas.
           </p>
           <ul className="mt-8 space-y-4">
             {["Investigadores", "Clínicos", "Estudiantes de posgrado"].map((x) => (
-              <li key={x} className="flex items-center gap-3 font-medium"><Users className="h-5 w-5 text-accent" />{x}</li>
+              <li key={x} className="flex items-center gap-3 font-medium"><Users className="h-5 w-5 text-link" />{x}</li>
             ))}
           </ul>
         </div>
         <div id="contacto" className="scroll-mt-24 rounded-3xl border bg-card p-8 shadow-soft">
           {sent ? (
             <div className="py-16 text-center">
-              <Check className="mx-auto h-12 w-12 text-accent" />
+              <Check className="mx-auto h-12 w-12 text-link" />
               <h3 className="mt-4 text-2xl font-bold">¡Gracias por escribirnos!</h3>
-              <p className="mt-2 text-muted-foreground">Se abrió tu correo para enviar el mensaje. También puedes escribir directamente a <a className="font-semibold text-accent" href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
+              <p className="mt-2 text-muted-foreground">Se abrió tu correo para enviar el mensaje. También puedes escribir directamente a <a className="font-semibold text-link" href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
             </div>
           ) : (
             <form onSubmit={submit} className="space-y-4">
               <h3 className="text-2xl font-bold">Contáctanos</h3>
-              <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 text-sm font-medium text-accent"><Mail className="h-4 w-4" />{EMAIL}</a>
+              <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 text-sm font-medium text-link"><Mail className="h-4 w-4" />{EMAIL}</a>
               {[["Nombre", "text"], ["Correo", "email"], ["Institución", "text"]].map(([l, t]) => (
                 <label key={l} className="block text-sm font-medium">{l}
                   <input required name={l} type={t} className="mt-1 w-full rounded-xl border bg-background px-4 py-3 outline-none focus:ring-2 focus:ring-accent" />
