@@ -237,7 +237,7 @@ function Index() {
             <div className="py-16 text-center">
               <Check className="mx-auto h-12 w-12 text-link" />
               <h3 className="mt-4 text-2xl font-bold">¡Gracias por escribirnos!</h3>
-              <p className="mt-2 text-muted-foreground">Se abrió tu correo para enviar el mensaje. También puedes escribir directamente a <a className="font-semibold text-accent" href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
+              <p className="mt-2 text-muted-foreground">Se abrió tu correo para enviar el mensaje. También puedes escribir directamente a <a className="font-semibold text-link" href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
             </div>
           ) : (
             <form onSubmit={submit} className="space-y-4">
