@@ -107,6 +107,11 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="es">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: 'try{if(localStorage.getItem("bioinnova-theme")==="dark"){document.documentElement.classList.add("dark")}}catch(e){}',
+          }}
+        />
         <HeadContent />
       </head>
       <body>

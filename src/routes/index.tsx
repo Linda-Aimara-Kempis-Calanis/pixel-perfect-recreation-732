@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
+import { cn } from "@/lib/utils";
 import {
   Dna, Menu, X, Award, FileText, GitBranch, LineChart, Mail, Sigma, ArrowRight, Heart,
   Check, MessageSquare, Zap, ClipboardList, Code2, FlaskConical, Users, Send, Microscope,
+  Moon, Sun,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -45,6 +47,41 @@ const beneficios = [
 const btnCta = "inline-flex items-center justify-center gap-2 rounded-full bg-cta px-6 py-3 font-semibold text-cta-foreground shadow-soft transition hover:brightness-110";
 const btnGhost = "inline-flex items-center justify-center gap-2 rounded-full border border-navy-foreground/30 px-6 py-3 font-semibold text-navy-foreground transition hover:bg-navy-foreground/10";
 
+const THEME_KEY = "bioinnova-theme";
+
+function applyTheme(dark: boolean) {
+  document.documentElement.classList.toggle("dark", dark);
+}
+
+function ThemeToggle({ className }: { className?: string }) {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const isDark = window.localStorage.getItem(THEME_KEY) === "dark";
+    setDark(isDark);
+    applyTheme(isDark);
+  }, []);
+  const toggle = () => {
+    const next = !dark;
+    setDark(next);
+    applyTheme(next);
+    window.localStorage.setItem(THEME_KEY, next ? "dark" : "light");
+  };
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label={dark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+      title={dark ? "Modo claro" : "Modo oscuro"}
+      className={cn(
+        "grid h-9 w-9 shrink-0 place-items-center rounded-full border border-navy-foreground/30 text-navy-foreground transition hover:bg-navy-foreground/10",
+        className,
+      )}
+    >
+      {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+    </button>
+  );
+}
+
 function Index() {
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
@@ -68,8 +105,12 @@ function Index() {
           <nav className="hidden items-center gap-7 md:flex">
             {nav.map((n) => <a key={n.href} href={n.href} className="text-sm opacity-80 hover:text-teal hover:opacity-100">{n.label}</a>)}
             <a href="#contacto" className="rounded-full bg-cta px-5 py-2 text-sm font-semibold text-cta-foreground hover:brightness-110">Contacto</a>
+            <ThemeToggle />
           </nav>
-          <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menú">{open ? <X /> : <Menu />}</button>
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
+            <button className="grid h-9 w-9 place-items-center" onClick={() => setOpen(!open)} aria-label="Menú">{open ? <X /> : <Menu />}</button>
+          </div>
         </div>
         {open && (
           <nav className="flex flex-col gap-3 px-5 pb-5 md:hidden">
@@ -88,7 +129,7 @@ function Index() {
               Bioinformática avanzada en <span className="text-teal">R</span> y análisis ómico
             </h1>
             <ul className="mt-6 space-y-3 text-lg opacity-90">
-              <li className="flex gap-3"><Award className="mt-1 h-5 w-5 shrink-0 text-teal" />Cursos especializados con constancia oficial con valor curricular por la <strong>Universidad Autónoma del Estado de Morelos (UAEM)</strong>.</li>
+              <li className="flex gap-3"><Award className="mt-1 h-5 w-5 shrink-0 text-teal" /><span>Cursos especializados con constancia oficial con valor curricular por la <strong>Universidad Autónoma del Estado de Morelos (UAEM)</strong>.</span></li>
               <li className="flex gap-3"><FlaskConical className="mt-1 h-5 w-5 shrink-0 text-teal" />Servicios de análisis bioinformático profesional.</li>
             </ul>
             <div className="mt-8 flex flex-wrap gap-4">
