@@ -105,8 +105,12 @@ function Index() {
           <nav className="hidden items-center gap-7 md:flex">
             {nav.map((n) => <a key={n.href} href={n.href} className="text-sm opacity-80 hover:text-teal hover:opacity-100">{n.label}</a>)}
             <a href="#contacto" className="rounded-full bg-cta px-5 py-2 text-sm font-semibold text-cta-foreground hover:brightness-110">Contacto</a>
+            <ThemeToggle />
           </nav>
-          <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menú">{open ? <X /> : <Menu />}</button>
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
+            <button className="grid h-9 w-9 place-items-center" onClick={() => setOpen(!open)} aria-label="Menú">{open ? <X /> : <Menu />}</button>
+          </div>
         </div>
         {open && (
           <nav className="flex flex-col gap-3 px-5 pb-5 md:hidden">
