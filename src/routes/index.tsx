@@ -47,6 +47,41 @@ const beneficios = [
 const btnCta = "inline-flex items-center justify-center gap-2 rounded-full bg-cta px-6 py-3 font-semibold text-cta-foreground shadow-soft transition hover:brightness-110";
 const btnGhost = "inline-flex items-center justify-center gap-2 rounded-full border border-navy-foreground/30 px-6 py-3 font-semibold text-navy-foreground transition hover:bg-navy-foreground/10";
 
+const THEME_KEY = "bioinnova-theme";
+
+function applyTheme(dark: boolean) {
+  document.documentElement.classList.toggle("dark", dark);
+}
+
+function ThemeToggle({ className }: { className?: string }) {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const isDark = window.localStorage.getItem(THEME_KEY) === "dark";
+    setDark(isDark);
+    applyTheme(isDark);
+  }, []);
+  const toggle = () => {
+    const next = !dark;
+    setDark(next);
+    applyTheme(next);
+    window.localStorage.setItem(THEME_KEY, next ? "dark" : "light");
+  };
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label={dark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+      title={dark ? "Modo claro" : "Modo oscuro"}
+      className={cn(
+        "grid h-9 w-9 shrink-0 place-items-center rounded-full border border-navy-foreground/30 text-navy-foreground transition hover:bg-navy-foreground/10",
+        className,
+      )}
+    >
+      {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+    </button>
+  );
+}
+
 function Index() {
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
