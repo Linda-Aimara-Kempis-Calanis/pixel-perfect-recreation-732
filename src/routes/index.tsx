@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
+import { cn } from "@/lib/utils";
 import {
   Dna, Menu, X, Award, FileText, GitBranch, LineChart, Mail, Sigma, ArrowRight, Heart,
   Check, MessageSquare, Zap, ClipboardList, Code2, FlaskConical, Users, Send, Microscope,
+  Moon, Sun,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
