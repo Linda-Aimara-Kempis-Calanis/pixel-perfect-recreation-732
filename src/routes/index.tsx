@@ -129,7 +129,7 @@ function Index() {
               Bioinformática avanzada en <span className="text-teal">R</span> y análisis ómico
             </h1>
             <ul className="mt-6 space-y-3 text-lg opacity-90">
-              <li className="flex gap-3"><Award className="mt-1 h-5 w-5 shrink-0 text-teal" />Cursos especializados con constancia oficial con valor curricular por la <strong>Universidad Autónoma del Estado de Morelos (UAEM)</strong>.</li>
+              <li className="flex gap-3"><Award className="mt-1 h-5 w-5 shrink-0 text-teal" /><span>Cursos especializados con constancia oficial con valor curricular por la <strong>Universidad Autónoma del Estado de Morelos (UAEM)</strong>.</span></li>
               <li className="flex gap-3"><FlaskConical className="mt-1 h-5 w-5 shrink-0 text-teal" />Servicios de análisis bioinformático profesional.</li>
             </ul>
             <div className="mt-8 flex flex-wrap gap-4">
